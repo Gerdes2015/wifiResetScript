@@ -1,24 +1,18 @@
 #!/bin/bash
 #Removes current network preference settings
 #Must restart computer after running script
+#Will require you put in your password to move these files
 
-:' Sample if statement for reference
-Want to add in ability to only run rm for wifiBackup if files exit already
-Alternative is to overwrite the files
-if [[ $REPLY = y ]]; then
-	read -p "$kafka_command_1 | grep " grepVar
-	kafka_command_2="$kafka_command_1 | grep $grepVar"
-else
-	kafka_command_2=$kafka_command_1
-fi
-'
+cd /
 
-cd /Users/alexander.j.gerdes/Documents/wifiBackup
+if cd ~/Desktop/wifiBackup ; then
 sudo rm com.apple.airport.preferences.plist
 sudo rm com.apple.network.eapolclient.configuration.plist
 sudo rm com.apple.wifi.message-tracer.plist
 sudo rm NetworkInterfaces.plist
-sudo rm preferences.plist
+sudo rm preferences.plist ; else
+cd ~/Desktop
+mkdir wifiBackup
 
 cd /Library/Preferences/SystemConfiguration/
 sudo mv com.apple.airport.preferences.plist /Users/alexander.j.gerdes/Documents/wifiBackup
